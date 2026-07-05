@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Firechrone",
+  "version": "0.1.0-alpha",
+  "description": "Bring compatible Chrome extensions to Firefox with automatic analysis and conversion.",
+
+  "author": "foxsign",
+
+  "icons": {
+    "48": "icons/48.png",
+    "96": "icons/96.png"
+  },
+
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "https://chromewebstore.google.com/*"
+  ],
+
+  "background": {
+    "scripts": [
+      "src/background/background.js"
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chromewebstore.google.com/*"
+      ],
+      "js": [
+        "src/content/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_title": "Firechrone",
+    "default_popup": "src/popup/popup.html"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "firechrone@foxsign",
+      "strict_min_version": "128.0"
+    }
+  }
+}
