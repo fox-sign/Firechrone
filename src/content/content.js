@@ -17,22 +17,42 @@ function replaceInstallButtons() {
       return;
     }
 
-    button.textContent = BUTTON_TEXT_MAP[text];
     button.dataset.firechroneModified = "true";
 
-    button.addEventListener(
-      "click",
-      (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
+    button.style.display = "none";
 
-        showModal();
-      },
-      true,
-    );
+    const fireButton = document.createElement("button");
 
-    console.log("[Firechrone] Install button replaced.");
+    fireButton.textContent = BUTTON_TEXT_MAP[text];
+
+    fireButton.style.background = "#FF7139";
+    fireButton.style.color = "#FFFFFF";
+    fireButton.style.border = "none";
+    fireButton.style.borderRadius = "9999px";
+    fireButton.style.padding = "10px 20px";
+    fireButton.style.fontSize = "14px";
+    fireButton.style.fontWeight = "600";
+    fireButton.style.cursor = "pointer";
+    fireButton.style.marginLeft = "8px";
+    fireButton.style.boxShadow = "0 2px 8px rgba(0,0,0,.2)";
+    fireButton.style.transition = "0.2s";
+
+    fireButton.addEventListener("mouseenter", () => {
+      fireButton.style.background = "#FF8A5B";
+    });
+
+    fireButton.addEventListener("mouseleave", () => {
+      fireButton.style.background = "#FF7139";
+    });
+
+    fireButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      showModal();
+    });
+
+    button.parentNode.insertBefore(fireButton, button.nextSibling);
   });
 }
 
